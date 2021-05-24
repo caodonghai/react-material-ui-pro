@@ -38,7 +38,7 @@ const ProductListToolbar = (props) => (
               fullWidth
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment position="start" size="small">
                     <SvgIcon
                       fontSize="small"
                       color="action"

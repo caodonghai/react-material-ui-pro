@@ -15,14 +15,14 @@ const DashboardLayoutRoot = experimentalStyled('div')(
 );
 
 const DashboardLayoutWrapper = experimentalStyled('div')(
-  ({ theme }) => ({
+  () => ({
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden',
     paddingTop: 64,
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: 256
-    }
+    // [theme.breakpoints.up('lg')]: {
+    //   paddingLeft: 256
+    // }
   })
 );
 
@@ -40,13 +40,16 @@ const DashboardLayoutContent = experimentalStyled('div')({
 
 const DashboardLayout = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+  const [isPCNavOpen, setPCNavOpen] = useState(false);
 
   return (
     <DashboardLayoutRoot>
-      <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      <DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} onPCNavOpen={() => setPCNavOpen(true)} />
       <DashboardSidebar
-        onMobileClose={() => setMobileNavOpen(false)}
+        onMobileChange={setMobileNavOpen}
         openMobile={isMobileNavOpen}
+        onPCClose={() => setPCNavOpen(false)}
+        openPC={isPCNavOpen}
       />
       <DashboardLayoutWrapper>
         <DashboardLayoutContainer>

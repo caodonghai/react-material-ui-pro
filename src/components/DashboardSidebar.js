@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Avatar,
   Box,
-  Button,
   Divider,
+  SwipeableDrawer,
   Drawer,
   Hidden,
   List,
@@ -72,14 +73,32 @@ const items = [
   }
 ];
 
-const DashboardSidebar = ({ onMobileClose, openMobile }) => {
+const DashboardSidebar = ({
+  onMobileChange,
+  openMobile,
+  onPCClose,
+  openPC
+}) => {
   const location = useLocation();
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
   useEffect(() => {
-    if (openMobile && onMobileClose) {
-      onMobileClose();
+    if (openMobile && onMobileChange) {
+      onMobileChange(false);
+    }
+
+    if (openPC && onPCClose) {
+      onPCClose();
     }
   }, [location.pathname]);
+
+  const useStyles = makeStyles({
+    root: {
+      '& .MuiBackdrop-root': {
+        background: 'transparent',
+      }
+    },
+  });
 
   const content = (
     <Box
@@ -133,55 +152,20 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           ))}
         </List>
       </Box>
-      <Box sx={{ flexGrow: 1 }} />
-      <Box
-        sx={{
-          backgroundColor: 'background.default',
-          m: 2,
-          p: 2
-        }}
-      >
-        <Typography
-          align="center"
-          gutterBottom
-          variant="h4"
-        >
-          Need more?
-        </Typography>
-        <Typography
-          align="center"
-          variant="body2"
-        >
-          Upgrade to PRO version and access 20 more screens
-        </Typography>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 2
-          }}
-        >
-          <Button
-            color="primary"
-            component="a"
-            href="https://react-material-kit.devias.io"
-            variant="contained"
-          >
-            See PRO version
-          </Button>
-        </Box>
-      </Box>
     </Box>
   );
 
   return (
     <>
       <Hidden lgUp>
-        <Drawer
+        <SwipeableDrawer
           anchor="left"
-          onClose={onMobileClose}
+          onClose={() => onMobileChange(false)}
           open={openMobile}
+          onOpen={() => onMobileChange(true)}
           variant="temporary"
+          disableBackdropTransition={!iOS}
+          disableDiscovery={iOS}
           PaperProps={{
             sx: {
               width: 256
@@ -189,13 +173,15 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           }}
         >
           {content}
-        </Drawer>
+        </SwipeableDrawer>
       </Hidden>
       <Hidden lgDown>
         <Drawer
-          anchor="left"
-          open
-          variant="persistent"
+          anchor="right"
+          onClose={onPCClose}
+          open={openPC}
+          variant="temporary"
+          className={useStyles().root}
           PaperProps={{
             sx: {
               width: 256,
@@ -212,13 +198,17 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 };
 
 DashboardSidebar.propTypes = {
-  onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  onMobileChange: PropTypes.func,
+  openMobile: PropTypes.bool,
+  onPCClose: PropTypes.func,
+  openPC: PropTypes.bool
 };
 
 DashboardSidebar.defaultProps = {
-  onMobileClose: () => { },
-  openMobile: false
+  onMobileChange: () => { },
+  openMobile: false,
+  onPCClose: () => { },
+  openPC: false
 };
 
 export default DashboardSidebar;

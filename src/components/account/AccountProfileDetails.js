@@ -71,6 +71,7 @@ const AccountProfileDetails = (props) => {
                 name="firstName"
                 onChange={handleChange}
                 required
+                size="small"
                 value={values.firstName}
                 variant="outlined"
               />
@@ -86,6 +87,7 @@ const AccountProfileDetails = (props) => {
                 name="lastName"
                 onChange={handleChange}
                 required
+                size="small"
                 value={values.lastName}
                 variant="outlined"
               />
@@ -101,6 +103,7 @@ const AccountProfileDetails = (props) => {
                 name="email"
                 onChange={handleChange}
                 required
+                size="small"
                 value={values.email}
                 variant="outlined"
               />
@@ -116,6 +119,7 @@ const AccountProfileDetails = (props) => {
                 name="phone"
                 onChange={handleChange}
                 type="number"
+                size="small"
                 value={values.phone}
                 variant="outlined"
               />
@@ -131,6 +135,7 @@ const AccountProfileDetails = (props) => {
                 name="country"
                 onChange={handleChange}
                 required
+                size="small"
                 value={values.country}
                 variant="outlined"
               />
@@ -146,6 +151,7 @@ const AccountProfileDetails = (props) => {
                 name="state"
                 onChange={handleChange}
                 required
+                size="small"
                 select
                 SelectProps={{ native: true }}
                 value={values.state}
@@ -173,6 +179,7 @@ const AccountProfileDetails = (props) => {
         >
           <Button
             color="primary"
+            size="small"
             variant="contained"
           >
             Save details
