@@ -13,6 +13,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
 import InputIcon from '@material-ui/icons/Input';
 import Logo from './Logo';
+import WorldCarousel from './WorldCarousel';
+import dataList from '../__mocks__/worldCarousel';
 
 const DashboardNavbar = ({ onMobileNavOpen, onPCNavOpen, ...rest }) => {
   const [notifications] = useState([]);
@@ -26,7 +28,9 @@ const DashboardNavbar = ({ onMobileNavOpen, onPCNavOpen, ...rest }) => {
         <RouterLink to="/">
           <Logo />
         </RouterLink>
-        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ flexGrow: 1 }}>
+          <WorldCarousel dataList={dataList} liHeight={60} speed={3} />
+        </Box>
         <Hidden lgDown>
           <IconButton color="inherit">
             <Badge
