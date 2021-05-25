@@ -53,7 +53,6 @@ function WorldCarousel({
   }, []);
 
   const content = () => {
-    console.log({ dataList });
     const liList = dataList?.map((item) => (
       <li
         key={item.data}
