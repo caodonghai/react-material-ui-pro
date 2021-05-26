@@ -4,7 +4,9 @@
 
 [![Material Kit - React](https://s3.eu-west-2.amazonaws.com/devias/products/react-material-dashboard/react-material-free-xl.jpg)](https://react-material-dashboard.devias.io/)
 
-> Free React Admin Dashboard made with [Material UI's](https://material-ui.com/?ref=devias-io) components, [React](https://reactjs.org/?ref=devias-io) and of course [create-react-app](https://facebook.github.io/create-react-app/?ref=devias-io) to boost your app development process! We'll launch a pro version soon, so if you are interested subscribe to our personal emailing list on [https://devias.io/](https://devias.io/)
+> [Material UI's](https://material-ui.com/?ref=devias-io)
+> [React](https://reactjs.org/?ref=devias-io)
+> [create-react-app](https://facebook.github.io/create-react-app/?ref=devias-io)
 
 ## Upgrade to PRO Version
 
@@ -19,17 +21,6 @@ We also have a pro version of this product which bundles even more pages and com
 | -                        | ✔ TypeScript version                                                                                   
 | -                        | ✔ Design files (sketch & figma) - for extended license       
 | -                        | ✔ Complete users flows                                       
-
-## Demo
-
-- [Dashboard Page](https://material-kit-react.devias.io/app/dashboard)
-- [Users Page](https://material-kit-react.devias.io/app/customers)
-- [Products Page](https://material-kit-react.devias.io/app/products)
-- [Register Page](https://material-kit-react.devias.io/register)
-- [Login Page](https://material-kit-react.devias.io/login)
-- [Account Page](https://material-kit-react.devias.io/app/account)
-- [Settings Page](https://material-kit-react.devias.io/app/settings)
-
 
 ## Quick start
 

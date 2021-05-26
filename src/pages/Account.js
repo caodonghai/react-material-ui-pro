@@ -10,7 +10,7 @@ import AccountProfileDetails from 'src/components/account/AccountProfileDetails'
 const Account = () => (
   <>
     <Helmet>
-      <title>颖宝 ｜ Love You</title>
+      <title>小甜甜 ｜ Love You</title>
     </Helmet>
     <Box
       sx={{

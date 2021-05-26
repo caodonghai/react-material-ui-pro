@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, cloneElement } from 'react';
-import { experimentalStyled } from '@material-ui/core';
+import { experimentalStyled, Tooltip } from '@material-ui/core';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
@@ -74,19 +74,20 @@ function WorldCarousel({
           position: 'relative',
         }}
       >
-        <div
-          style={{
-            width: '100%',
-            textAlign: 'center',
-            fontSize: '18px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap'
-          }}
-        >
-          { item.content }
-        </div>
-        &nbsp;&nbsp;
+        <Tooltip title={item.content}>
+          <div
+            style={{
+              width: '100%',
+              textAlign: 'center',
+              fontSize: '18px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap'
+            }}
+          >
+            { item.content }
+          </div>
+        </Tooltip>
         <TimeContent>
           { moment(item.data).fromNow() }
         </TimeContent>
