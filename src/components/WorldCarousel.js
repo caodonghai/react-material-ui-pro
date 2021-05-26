@@ -14,6 +14,16 @@ const MainLayoutContent = experimentalStyled('div')({
   justifyContent: 'center',
 });
 
+const TimeContent = experimentalStyled('div')(
+  ({ theme }) => ({
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    fontSize: '14px',
+    color: theme.palette.background.paper,
+  })
+);
+
 function WorldCarousel({
   dataList,
   liHeight,
@@ -59,17 +69,27 @@ function WorldCarousel({
         style={{
           width: '100%',
           height: liHeight,
-          lineHeight: `${liHeight}px`,
-          textAlign: 'center',
-          fontSize: '18px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap'
+          display: 'flex',
+          alignItems: 'center',
+          position: 'relative',
         }}
       >
-        <span>{ item.content }</span>
+        <div
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            fontSize: '18px',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap'
+          }}
+        >
+          { item.content }
+        </div>
         &nbsp;&nbsp;
-        <span>{ moment(item.data).fromNow() }</span>
+        <TimeContent>
+          { moment(item.data).fromNow() }
+        </TimeContent>
       </li>
     ));
     return [...liList, cloneElement(liList[0], { key: 'firstDataCopy' })];

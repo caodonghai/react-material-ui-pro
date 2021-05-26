@@ -2,7 +2,7 @@ export default [
   {
     data: '20100101',
     address: '杭州',
-    content: '元旦抓娃娃开心啊',
+    content: '元旦抓娃娃开心啊,抓了一百个娃娃，都拿不动了，打了个出租车装回去。',
   },
   {
     data: '20200202',
@@ -27,11 +27,11 @@ export default [
   {
     data: '20200606',
     address: '杭州',
-    content: '六月的雨，下个不停...',
+    content: '六月的雨，下个不停。',
   },
   {
     data: '20210707',
     address: '杭州',
-    content: '七夕节快乐...',
+    content: '七夕节快乐。',
   },
 ];
