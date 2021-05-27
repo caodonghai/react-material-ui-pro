@@ -42,6 +42,11 @@ const items = [
     title: 'Customers'
   },
   {
+    href: '/app/timeLine',
+    icon: UsersIcon,
+    title: '时间旅行'
+  },
+  {
     href: '/app/products',
     icon: ShoppingBagIcon,
     title: 'Products'
