@@ -62,7 +62,19 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   content: {
-    color: theme.palette.primary.main,
+    color: theme.palette.secondary.main,
+  },
+  startBox: {
+    margin: '0 auto',
+    marginBottom: 10,
+    textAlign: 'center',
+    height: 32,
+    width: 32,
+    lineHeight: '32px',
+    borderRadius: '50%',
+    fontSize: '12px',
+    border: `1px dotted ${theme.palette.secondary.main}`,
+    backgroundColor: theme.palette.background.paper
   }
 }));
 
@@ -127,10 +139,13 @@ export default function CustomizedTimeline() {
   );
 
   return (
-    <Timeline align="alternate">
-      {
-        timelineItem()
-      }
-    </Timeline>
+    <>
+      <Timeline align="alternate">
+        {
+          timelineItem()
+        }
+      </Timeline>
+      <div className={classes.startBox}>开始</div>
+    </>
   );
 }
