@@ -1,52 +1,62 @@
 import React from 'react';
 import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Virtual,
-  Autoplay
+  Autoplay,
+  EffectCoverflow,
+  Pagination
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import PropTypes from 'prop-types';
-// import 'swiper/swiper-bundle.css';
-import 'swiper/swiper-bundle.min.css';
-// import 'swiper/swiper.less';
-// import 'swiper/components/navigation/navigation.less';
-// import 'swiper/components/pagination/pagination.less';
-// import 'swiper/components/scrollbar/scrollbar.less';
+import 'swiper/swiper-bundle.css';
+// import 'swiper/swiper-bundle.min.css';
 
-SwiperCore.use([Virtual, Autoplay]);
-
+SwiperCore.use([Autoplay, EffectCoverflow, Pagination]);
 function MySwiper({
-  contents,
-  contentsFun
+  imgDataKey,
 }) {
+  const requireContextImgs = () => {
+    // directory:表示检索的目录
+    // useSubdirectories：表示是否检索子文件夹
+    // regExp:匹配文件的正则表达式,一般是文件名
+    // 例如 require.context("@/views/components",false,/.vue$/)
+    const reqImgs = require.context('../images/timeLineImg', true, /\w(\.gif|\.jpeg|\.png|\.jpg|\.bmp)$/);
+    const allImgPaths = reqImgs.keys() || [];
+    const currentImgPaths = allImgPaths.filter((item) => item.includes(imgDataKey));
+    // console.log({ currentImgPaths, allImgPaths, imgDataKey });
+    return currentImgPaths?.map((imgPath, index) => {
+      const image = reqImgs(imgPath);
+      return (
+        <SwiperSlide key={imgPath} virtualIndex={index}>
+          <img src={image.default} width="100%" height="auto" alt={image.default} />
+        </SwiperSlide>
+      );
+    });
+  };
+
   return (
     <Swiper
       slidesPerView={1}
-      onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      // pagination={{ clickable: false }}
+      loop
+      effect="coverflow"
+      autoplay={{
+        delay: 3000
+      }}
+      // onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
     >
       {
-        contents?.map((slideContent, index) => (
-          <SwiperSlide key={slideContent} virtualIndex={index}>
-            {contentsFun(slideContent)}
-          </SwiperSlide>
-        ))
+        requireContextImgs()
       }
     </Swiper>
   );
 }
 
 MySwiper.propTypes = {
-  contents: PropTypes.array,
-  contentsFun: PropTypes.func,
+  imgDataKey: PropTypes.string,
 };
 
 MySwiper.defaultProps = {
-  contents: [],
-  contentsFun: (item) => item,
+  imgDataKey: '',
 };
 
 export default MySwiper;

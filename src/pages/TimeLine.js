@@ -1,7 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -33,7 +30,6 @@ import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 import timeLineData from '../__mocks__/timeLine';
 import MySwiper from '../components/MySwiper';
-import hhh from '../images/timeLineImg/1.jpeg';
 
 moment.locale('zh-en');
 
@@ -65,37 +61,13 @@ const useStyles = makeStyles((theme) => ({
   secondaryTail: {
     backgroundColor: theme.palette.secondary.main,
   },
+  content: {
+    color: theme.palette.primary.main,
+  }
 }));
-
-const contentsFun = (item) => {
-  const path = `../src/images/timeLineImg/${item}`;
-  return (
-    // <div
-    //   style={{
-    //     width: '100%',
-    //     height: 50,
-    //     backgroundSize: '100%',
-    //     backgroundImage: 'URL(../images/timeLineImg/1.png)',
-    //   }}
-    // />
-    <img src={require('../images/timeLineImg/1.jpeg').default} width="100%" height="auto" alt={item} />
-    // <img src={hhh} width="100%" height="auto" alt={item} />
-  );
-};
 
 export default function CustomizedTimeline() {
   const classes = useStyles();
-  const [dataSource, setDataSource] = useState(timeLineData);
-
-  useEffect(() => {
-    const newDataSource = dataSource?.map((item) => {
-      const contents = item?.imgNames;
-      console.log(contents);
-      return (
-        '123'
-      );
-    });
-  }, []);
 
   const timelineItem = () => (
     timeLineData?.map(({
@@ -103,16 +75,19 @@ export default function CustomizedTimeline() {
       address,
       content,
       desc,
-      imgNames
+      imgDataKey
     }, index) => {
       const CurrentIcon = iconsArr[(index % iconsArr.length)];
       return (
         <TimelineItem key={data}>
           <TimelineOppositeContent>
-            <Typography variant="h5" color="textSecondary">
-              { moment(data).format('YYYY年MM月DD日') }
+            <Typography variant="p" className={classes.content}>
+              { content }
             </Typography>
-            <Typography variant="body2" color="textSecondary">
+            <Typography variant="h6" color="textSecondary">
+              { moment(data).format('YYYY-MM-DD') }
+            </Typography>
+            <Typography variant="body2" fontSize="12px" color="textSecondary">
               { address }
             </Typography>
           </TimelineOppositeContent>
@@ -132,8 +107,7 @@ export default function CustomizedTimeline() {
                 }}
               >
                 <MySwiper
-                  contents={imgNames}
-                  contentsFun={contentsFun}
+                  imgDataKey={imgDataKey}
                 />
               </Typography>
               <Typography
@@ -143,7 +117,7 @@ export default function CustomizedTimeline() {
                   padding: '0 6px 6px 6px',
                 }}
               >
-                { content }
+                { desc }
               </Typography>
             </Paper>
           </TimelineContent>
